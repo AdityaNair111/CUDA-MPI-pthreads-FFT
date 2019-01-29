@@ -15,10 +15,12 @@ results were all stored in a new array, and the code waited for all threads to f
 then transposed, and the threads repeated the process on what was now the columns of the original
 matrix. The result was stored in the original array, which was then transposed once again to give the
 final result.
+
 The MPI implementation of Danielson-Lanczos method uses recursion in order to compute the FastFourier Transform (FFT). The FFT was calculated by computing the DFT of the even positions, then the
 DFT of the odd positions in a row and then summing them. This method is implemented by first
 computing the FFT for the rows assigned to each rank, sending the completed rows to a single rank,
 which then transposes the matrix and repeats the process.
+
 The CUDA implementation leverages parallel high performance computing to calculate the 2D DFT of an
 input matrix by computing the 1D DFT’s simultaneously. We make use of the parallelism offered by the
 blocks and the synchronism offered by the threads to achieve an optimal implementation.
